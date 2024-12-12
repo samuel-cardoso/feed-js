@@ -18,11 +18,11 @@ function App() {
       content: [
         {
           type: "paragraph",
-          text: "Fala galeraa 👋"
+          content: "Fala galeraa 👋"
         },
         {
           type: "paragraph",
-          text: "Acabei de subir mais um projeto no meu portifólio. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀"
+          content: "Acabei de subir mais um projeto no meu portifólio. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀"
         },
       ],
       publishedAt: new Date("2024-12-11 07:43:00"),
@@ -37,11 +37,11 @@ function App() {
       content: [
         {
           type: "paragraph",
-          text: "Fala galeraa 👋"
+          content: "Fala galeraa 👋"
         },
         {
           type: "paragraph",
-          text: "Acabei de subir mais um projeto no meu portifólio. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀"
+          content: "Acabei de subir mais um projeto no meu portifólio. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀"
         },
       ],
       publishedAt: new Date("2024-12-10 07:43:00"),

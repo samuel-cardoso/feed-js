@@ -1,38 +1,53 @@
+import { format, formatDistanceToNow } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
+
 import { Avatar } from './Avatar';
 import { Comment } from './Comment';
 import styles from './Post.module.css'; 
 
+export function Post({ author, publishedAt, content }) {
 
+    // Usando Inrl para formatar a data.
+    // const publishedDateFormatted = new Intl.DateTimeFormat('pt-BR', {
+    //     day: '2-digit',
+    //     month: 'long',
+    //     hour: '2-digit',
+    //     minute: '2-digit'
+    // }).format(publishedAt);
 
-export function Post(props) {
+    const publishedDateFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
+        locale: ptBR,
+    }) // As aspas simples são para escapar o texto, para que ele seja interpretado como texto para que o format do date-fns não tente formatar.
 
-    console.log(props)
+    const publishedRelativeToNow = formatDistanceToNow(publishedAt, {
+        locale: ptBR,
+        addSuffix: true
+    })
 
-    return (
+       return (
         <article className={styles.post}>
             <header>
                 <div className={styles.author}>
-                    <Avatar src="https://github.com/samuel-cardoso.png" />
+                    <Avatar src={author.avatarUrl} />
                     <div className={styles.authorInfo}>
-                        <strong>Samuel Cardoso da Silva</strong>
-                        <span>Web Developer</span>
+                        <strong>{author.name}</strong>
+                        <span>{author.role}</span>
                     </div>
                 </div>
 
-                <time title="26 de Novembro às 21:30h" dateTime='2024-11-26 21:31:00'>Publicado há 1h</time>
+                <time title={publishedDateFormatted} dateTime={publishedAt.toISOString()}>
+                {publishedRelativeToNow}
+                </time>
             </header>
 
             <div className={styles.content}>
-                <p>
-                    <p>Fala galeraa 👋</p>
-                    <p>Acabei de subir mais um projeto no meu portifólio. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀</p>
-                    <p><a href='#'>jane.design/doctorcare</a></p>
-                    <p>
-                        <a href='#'>#novoprojeto</a>{' '}
-                        <a href="">#nlw</a>{' '}
-                        <a href="">#rocketseat</a>
-                    </p>
-                </p>
+                {content.map(line => {
+                    if (line.type === 'paragraph') {
+                        return <p>{line.content}</p>;
+                    } else if (line.type === 'link') {
+                        return <p><a href="#">{line.content}</a></p>;
+                    }
+                })}
             </div>
             
             <form className={styles.commentForm}>
