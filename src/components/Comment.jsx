@@ -3,6 +3,7 @@ import styles from './Comment.module.css';
 import { Avatar } from './Avatar';
 import { useState } from 'react';
 
+// eslint-disable-next-line react/prop-types
 export function Comment({ content, onDeleteComment }) {
 
     const [likeCount, setlikeCount] = useState(0);
